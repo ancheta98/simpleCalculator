@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #calc{
+            border: 1px solid black;
+            padding: 50px;
+            width: 25%;
+        }
+        #answer{
+            text-align: right;
+        }
+        .row{
+            padding: 0;
+            margin: 2px 0;
+            text-align: center;
+        }
+        .num{
+            display: inline;
+            border: 1px solid black;
+            padding: 0 20px;
+            /* margin: 0 5px; */
+        }
+        #clear{
+            display: inline;
+            border: 1px solid black;
+            padding: 0 20px;
+            /* margin: 0 5px; */
+        }
+        .eq{
+            display: inline;
+            border: 1px solid black;
+            padding: 0 20px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="calc">
+        <div id="answer">0.000</div>
+        <div class="row">
+            <div class="num" data-number=7>7</div>
+            <div class="num" data-number=8>8</div>
+            <div class="num" data-number=9>9</div>
+            <div id="clear">C</div>
+        </div>
+        <div class="row">
+            <div class="num" data-number=4>4</div>
+            <div class="num" data-number=5>5</div>
+            <div class="num" data-number=6>6</div>
+            <div class="num" data-number="/">/</div>
+        </div>
+        <div class="row">
+            <div class="num" data-number=1>1</div>
+            <div class="num" data-number=2>2</div>
+            <div class="num" data-number=3>3</div>
+            <div class="num"  data-number="*">*</div>
+        </div>
+        <div class="row">
+            <div class="num" data-number=1>0</div>
+            <div class="num" data-number=2>00</div>
+            <div class="num" data-number=3>.</div>
+            <div class="num" data-number="+">+</div>
+        </div>
+        <div class="row">
+            <div class="eq" id="compute">=</div>
+            <div class="num" data-number="-">-</div>
+        </div>
+    </div>
+    <script>
+        // console.log(document.getElementsByClassName("num"))
+        var equation = ""
+        var buttons = document.getElementsByClassName("num")
+        var clear = document.getElementById("clear")
+        var compute = document.getElementById("compute")
+
+        
+        compute.addEventListener("click", function(){
+            // var copy = equation;
+            //split string at non numeric vals unnecessary due to eval
+            // equation = equation.replace(/[0-9]+/g, "#").replace(/[\(|\|\.)]/g, "");
+            // var numbers = copy.split(/[^0-9\.]+/);
+            // var operators = equation.split("#").filter(function(n){return n});
+            // var result = [];
+
+
+            // for(i = 0; i < numbers.length; i++){
+            //     result.push(numbers[i]);
+            //     if (i < operators.length) result.push(operators[i]);
+            // }
+            // console.log("res: ",  result);
+            var answer = 0;
+            answer = eval(equation)
+            console.log(answer)
+            document.getElementById("answer").innerHTML = answer
+            equation = ""
+        })
+        clear.addEventListener("click", function(){
+            equation = "";
+            console.log("you cleared the equation: ",  equation);
+        })
+
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener('click', clickHandler, false);
+        }
+        function clickHandler(){
+            var attribute = this.getAttribute("data-number");
+            equation += attribute
+            console.log(equation)
+            document.getElementById("answer").innerHTML = equation
+        }
+
+
+    </script>
+</body>
+</html>
