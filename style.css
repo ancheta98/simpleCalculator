@@ -1,0 +1,20 @@
+#calc{
+    border: 1px solid black;
+    padding: 50px;
+    width: 25%;
+}
+#answer{
+    text-align: right;
+}
+table{
+    width: 200px;
+    height: 300px;
+    border: 1px solid black;
+    text-align: center;
+}
+td {
+    border: 1px solid black;
+}
+.num:hover,#clear:hover,#compute:hover{
+    background-color: grey;
+}
