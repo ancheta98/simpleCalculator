@@ -23,7 +23,9 @@
         td {
             border: 1px solid black;
         }
-
+        .num:hover,#clear:hover,#compute:hover{
+            background-color: grey;
+        }
     </style>
 </head>
 <body>
@@ -57,14 +59,51 @@
     </div>
     <script>
         // console.log(document.getElementsByClassName("num"))
+        //equation is a variable that I will use to hold the math equation the user intends to do
         var equation = ""
+        // buttons is all the numbers
         var buttons = document.getElementsByClassName("num")
+        // Button to clear out the expression
         var clear = document.getElementById("clear")
+        // Button to do the expression
         var compute = document.getElementById("compute")
 
         
         compute.addEventListener("click", function(){
-            // var copy = equation;
+         
+            //documentation for the eval() funciton
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
+            //answer is the final evaluated expression
+            var answer = 0;
+            answer = eval(equation)
+            // show the answer to the user on the page
+            document.getElementById("answer").innerHTML = answer
+            // reset the equation to be empty
+            equation = ""
+        })
+        clear.addEventListener("click", function(){
+            // when a user clicks the big C then the equation becomes empty
+            equation = "";
+            // reset the view to show 0
+            document.getElementById("answer").innerHTML = "0.00"
+        })
+        // when attaching an event handler to multiple things (eg a class) we must loop through all of them 
+        // ... and attach them individually
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener('click', clickHandler, false);
+        }
+        function clickHandler(){
+            // this function records each of the user's presses in the calculator
+            var attribute = this.getAttribute("data-number");
+            // change equation so that it reflects the user's inputs
+            equation += attribute
+            // display the changes as the user types
+            document.getElementById("answer").innerHTML = equation
+        }
+
+        // NOTES 
+        // I tried to build my own math equation parser but failed so I used eval() for now
+           // var copy = equation;
             //split string at non numeric vals unnecessary due to eval
             // equation = equation.replace(/[0-9]+/g, "#").replace(/[\(|\|\.)]/g, "");
             // var numbers = copy.split(/[^0-9\.]+/);
@@ -77,30 +116,6 @@
             //     if (i < operators.length) result.push(operators[i]);
             // }
             // console.log("res: ",  result);
-
-            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
-            var answer = 0;
-            answer = eval(equation)
-            console.log(answer)
-            document.getElementById("answer").innerHTML = answer
-            equation = ""
-        })
-        clear.addEventListener("click", function(){
-            equation = "";
-            console.log("you cleared the equation: ",  equation);
-        })
-
-        for (var i = 0; i < buttons.length; i++) {
-            buttons[i].addEventListener('click', clickHandler, false);
-        }
-        function clickHandler(){
-            var attribute = this.getAttribute("data-number");
-            equation += attribute
-            console.log(equation)
-            document.getElementById("answer").innerHTML = equation
-        }
-
-
     </script>
 </body>
 </html>
