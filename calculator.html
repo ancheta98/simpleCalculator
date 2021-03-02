@@ -14,62 +14,46 @@
         #answer{
             text-align: right;
         }
-        .row{
-            padding: 0;
-            margin: 2px 0;
+        table{
+            width: 200px;
+            height: 300px;
+            border: 1px solid black;
             text-align: center;
         }
-        .num{
-            display: inline;
+        td {
             border: 1px solid black;
-            padding: 0 20px;
-            /* margin: 0 5px; */
         }
-        #clear{
-            display: inline;
-            border: 1px solid black;
-            padding: 0 20px;
-            /* margin: 0 5px; */
-        }
-        .eq{
-            display: inline;
-            border: 1px solid black;
-            padding: 0 20px;
-            
-        }
+
     </style>
 </head>
 <body>
-    <div id="calc">
-        <div id="answer">0.000</div>
-        <div class="row">
-            <div class="num" data-number=7>7</div>
-            <div class="num" data-number=8>8</div>
-            <div class="num" data-number=9>9</div>
-            <div id="clear">C</div>
-        </div>
-        <div class="row">
-            <div class="num" data-number=4>4</div>
-            <div class="num" data-number=5>5</div>
-            <div class="num" data-number=6>6</div>
-            <div class="num" data-number="/">/</div>
-        </div>
-        <div class="row">
-            <div class="num" data-number=1>1</div>
-            <div class="num" data-number=2>2</div>
-            <div class="num" data-number=3>3</div>
-            <div class="num"  data-number="*">*</div>
-        </div>
-        <div class="row">
-            <div class="num" data-number=1>0</div>
-            <div class="num" data-number=2>00</div>
-            <div class="num" data-number=3>.</div>
-            <div class="num" data-number="+">+</div>
-        </div>
-        <div class="row">
-            <div class="eq" id="compute">=</div>
-            <div class="num" data-number="-">-</div>
-        </div>
+        <table>
+            <tr>
+                <td id="answer" colspan="4">0.000</td>
+            </tr>
+            <tr>
+                <td class="num" data-number=7>7</td>
+                <td class="num" data-number=8>8</td>
+                <td class="num" data-number=9>9</td>
+                <td id="clear">C</div>
+            </tr>
+            <tr>
+                <td class="num" data-number=4>4</td>
+                <td class="num" data-number=5>5</td>
+                <td class="num" data-number=6>6</td>
+                <td class="num" data-number="/">/</td>
+            </tr>
+            <tr>
+                <td class="num" data-number=1>1</td>
+                <td class="num" data-number=2>2</td>
+                <td class="num" data-number=3>3</td>
+                <td class="num"  data-number="*">*</td>
+            </tr>
+            <tr>
+                <td colspan="3" class="eq" id="compute" >=</td>
+                <td class="num" data-number="-">-</td>
+            </tr>
+        </table>
     </div>
     <script>
         // console.log(document.getElementsByClassName("num"))
@@ -93,6 +77,8 @@
             //     if (i < operators.length) result.push(operators[i]);
             // }
             // console.log("res: ",  result);
+
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
             var answer = 0;
             answer = eval(equation)
             console.log(answer)
